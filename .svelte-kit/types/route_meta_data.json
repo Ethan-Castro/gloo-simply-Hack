@@ -1,5 +1,8 @@
 {
 	"/": [],
+	"/about": [],
+	"/community": [],
+	"/contact": [],
 	"/game": [
 		"src/routes/game/+page.server.ts"
 	],
@@ -7,6 +10,7 @@
 		"src/routes/game/match/+page.ts",
 		"src/routes/game/match/+page.server.ts"
 	],
+	"/landing": [],
 	"/leaderboard": [],
 	"/profile": []
 }

@@ -24,6 +24,7 @@
 						/>
 					</svg>
 				</div>
+				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 				<ul
 					tabindex="0"
 					class="menu menu-sm text-lg dropdown-content bg-white dark:bg-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
@@ -46,7 +47,14 @@
 						<a
 							href="/profile"
 							class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-							>Profie</a
+							>Profile</a
+						>
+					</li>
+					<li>
+						<a
+							href="/community"
+							class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+							>Community</a
 						>
 					</li>
 
@@ -74,7 +82,7 @@
 					</li>
 				</ul>
 			</div>
-			<a href="/" class="btn btn-ghost text-2xl text-gray-800 dark:text-white">Catch The AI</a>
+			<a href="/" class="btn btn-ghost text-2xl text-gray-800 dark:text-white">SIMplify</a>
 		</div>
 		<div class="navbar-center hidden lg:flex">
 			<ul class="md:text-2xl font-medium menu menu-horizontal px-1">
@@ -98,6 +106,13 @@
 						href="/profile"
 						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
 						>Profile</a
+					>
+				</li>
+				<li>
+					<a
+						href="/community"
+						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						>Community</a
 					>
 				</li>
 
