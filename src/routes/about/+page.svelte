@@ -167,6 +167,24 @@
     color: #9915f7;
     margin-bottom: 15px;
     font-size: 1.8em;
+    position: relative;
+    display: inline-block;
+  }
+
+  .team-member h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .team-member:hover h3::after {
+    transform: scaleX(1);
   }
 
   .team-member p {

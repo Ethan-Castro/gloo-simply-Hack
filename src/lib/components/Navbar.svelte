@@ -57,6 +57,13 @@
 							>Community</a
 						>
 					</li>
+					<li>
+						<a
+							href="/resources"
+							class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+							>Resources</a
+						>
+					</li>
 
 					<li>
 						<a
@@ -89,14 +96,14 @@
 				<li>
 					<a
 						href="/"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>Home</a
 					>
 				</li>
 				<li>
 					<a
 						href="/game"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>Game</a
 					>
 				</li>
@@ -104,22 +111,29 @@
 				<li>
 					<a
 						href="/profile"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>Profile</a
 					>
 				</li>
 				<li>
 					<a
 						href="/community"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>Community</a
+					>
+				</li>
+				<li>
+					<a
+						href="/resources"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
+						>Resources</a
 					>
 				</li>
 
 				<li>
 					<a
 						href="/leaderboard"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>Leaderboard</a
 					>
 				</li>
@@ -127,14 +141,14 @@
 				<li>
 					<a
 						href="/contact"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>Contact</a
 					>
 				</li>
 				<li>
 					<a
 						href="/about"
-						class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+						class="text-black-700 dark:text-black-300 hover:bg-purple-100 dark:hover:bg-purple-700"
 						>About</a
 					>
 				</li>
