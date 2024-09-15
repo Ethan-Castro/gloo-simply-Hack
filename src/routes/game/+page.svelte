@@ -25,54 +25,67 @@
 	}
 </script>
 
-<section class="flex flex-col justify-center items-center min-h-screen p-4 bg-white text-black relative overflow-hidden">
-	<div class="absolute inset-0 z-0 opacity-5">
-		<div class="absolute top-0 left-0 w-40 h-40 border-t-4 border-l-4 border-black"></div>
-		<div class="absolute bottom-0 right-0 w-40 h-40 border-b-4 border-r-4 border-black"></div>
-		<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 border-4 border-black rounded-full"></div>
+<section class="relative min-h-screen bg-gradient-to-r from-purple-50 to-white overflow-hidden">
+	<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center items-center text-center">
+		<div class="text-center space-y-8 w-full max-w-md" in:fade="{{ duration: 300, delay: 300 }}">
+			<h1 in:fly="{{ y: 50, duration: 1000, delay: 300 }}" class="text-5xl sm:text-7xl font-extrabold text-gray-900 mb-4">
+				Peacetime Simulator
+			</h1>
+			
+			<p in:fade="{{ duration: 1000, delay: 800 }}" class="text-xl sm:text-2xl text-gray-700 mb-8">
+				In the text box below, enter a scenario, sermon, or situation you would like to simulate.
+			</p>
+			
+			<form
+				on:submit={handleSendUsername}
+				class="flex flex-col items-center space-y-4 w-full"
+				method="POST"
+				action="?/joinGame"
+			>
+				<input
+					type="text"
+					name="username"
+					placeholder="Enter a scenario to simulate"
+					class="w-full p-4 border-2 border-purple-600 bg-white text-gray-900 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300"
+					bind:value={inputValue}
+				/>
+
+				<button 
+					class="w-full px-8 py-3 bg-purple-600 text-white text-xl font-bold rounded-full hover:bg-purple-700 transition duration-300 transform hover:scale-105"
+					type="submit"
+				>
+					Run Peacetime Simulations
+				</button>
+			</form>
+		</div>
 	</div>
 
-	<div class="text-center space-y-8 w-full max-w-md z-10" in:fade="{{ duration: 300, delay: 300 }}">
-		<h1 class="text-6xl font-bold" in:fly="{{ y: 50, duration: 500, delay: 300 }}">Peacetime Simulator</h1>
-		<h2 class="text-3xl font-light" in:fly="{{ y: 50, duration: 500, delay: 400 }}">
-			Wondering what your Church, Family, or Friends need? &#129302;
-		</h2>
-		<form
-			on:submit={handleSendUsername}
-			class="flex flex-col items-center space-y-4 w-full"
-			method="POST"
-			action="?/joinGame"
-		>
-			<input
-				type="text"
-				name="username"
-				placeholder="Enter a username"
-				class="w-full p-4 border-2 border-black bg-white text-black placeholder-gray-500 rounded-none focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
-				bind:value={inputValue}
-			/>
-
-			<button 
-				class="w-full p-4 bg-black text-white text-2xl rounded-none hover:bg-white hover:text-black border-2 border-black transition-all duration-300"
-				type="submit"
-			>
-				Run Peacetime Simulations
-			</button>
-		</form>
+	<!-- Animated Background Elements -->
+	<div class="absolute inset-0 overflow-hidden pointer-events-none">
+		{#each Array(20) as _, i}
+			<div
+				class="absolute rounded-full bg-purple-200 opacity-20"
+				style="
+					width: {Math.random() * 200 + 50}px;
+					height: {Math.random() * 200 + 50}px;
+					left: {Math.random() * 100}%;
+					top: {Math.random() * 100}%;
+					animation: float {Math.random() * 20 + 10}s infinite ease-in-out;
+				"
+			></div>
+		{/each}
 	</div>
 </section>
 
 <style>
 	:global(body) {
 		background-color: white;
-		color: black;
+		color: #111827; /* gray-900 */
 	}
 
-	input::placeholder {
-		color: #a0a0a0;
-	}
-
-	input:focus::placeholder {
-		color: #d0d0d0;
+	@keyframes float {
+		0%, 100% { transform: translateY(0) rotate(0deg); }
+		50% { transform: translateY(-20px) rotate(180deg); }
 	}
 
 	@keyframes pulse {

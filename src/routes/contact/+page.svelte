@@ -7,141 +7,192 @@
   let showContacts = false;
 
   onMount(() => {
-    showContacts = true;
-    document.body.style.overflowX = 'hidden';
+      showContacts = true;
+      document.body.style.overflowX = 'hidden';
   });
 
   const contacts = [
-    { name: "Ethan", email: "theethancastro@gmail.com" },
-    { name: "Jon", email: "Jon@gmail.com" }
+      { name: "Ethan Castro", email: "theethancastro@gmail.com" },
+      { name: "Jon Legasa", email: "jon.legasa@gmail.com" }
   ];
 
   let y;
   $: scrolled = spring(0);
   $: scrolled.set(y);
+
+  // Function to generate initials from name
+  function getInitials(name: string): string {
+      return name.split(' ').map(word => word[0]).join('').toUpperCase();
+  }
 </script>
 
 <svelte:window bind:scrollY={y}/>
 
-<div class="container" style="transform: translateY({$scrolled * 0.1}px)">
-  <h1 in:fly="{{ y: -50, duration: 1000, easing: cubicInOut }}" out:fade>Contact Us</h1>
-
-  {#if showContacts}
-    <div class="contacts-grid">
-      {#each contacts as contact, index}
-        <div 
-          class="contact-card"
-          in:fly="{{ y: 50, duration: 1000, delay: index * 200, easing: cubicInOut }}"
-          out:scale
-        >
-          <h2>{contact.name}</h2>
-          <a href="mailto:{contact.email}">{contact.email}</a>
-        </div>
+<section class="relative min-h-screen bg-gradient-to-r from-purple-50 to-white overflow-hidden text-gray-900">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      {#each Array(20) as _, i}
+          <div
+              class="absolute rounded-full bg-purple-200 opacity-20"
+              style="
+                  width: {Math.random() * 200 + 50}px;
+                  height: {Math.random() * 200 + 50}px;
+                  left: {Math.random() * 100}%;
+                  top: {Math.random() * 100}%;
+                  animation: float {Math.random() * 20 + 10}s infinite ease-in-out;
+              "
+          ></div>
       {/each}
-    </div>
+  </div>
 
-    <p class="contact-info" in:fade="{{ duration: 1000, delay: 800 }}">
-      Feel free to reach out to us for any inquiries or support.
-    </p>
-  {/if}
-</div>
+  <!-- Content Section -->
+  <div class="relative z-10 container mx-auto px-4 py-12">
+      {#if showContacts}
+          <div 
+              class="text-center mb-12"
+              in:fade={{ duration: 300 }}
+          >
+              <h1 
+                  in:fly={{ y: -50, duration: 1000, easing: cubicInOut }} 
+                  class="text-5xl sm:text-7xl font-extrabold text-black-800 mb-4"
+              >
+                  Contact Us
+              </h1>
+              <p 
+                  in:fade={{ duration: 1000, delay: 800 }} 
+                  class="text-lg sm:text-xl font-semibold text-black-700 mb-8"
+              >
+                  We're here to help! Reach out to us for any inquiries or support.
+              </p>
+          </div>
+
+          <div class="flex justify-center mb-12">
+              <div class="w-full max-w-3xl">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {#each contacts as contact, index}
+                          <div 
+                              class="contact-card bg-white p-6 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105"
+                              in:fly={{ y: 50, duration: 1000, delay: index * 200, easing: cubicInOut }}
+                              out:scale
+                          >
+                              <div class="flex items-center space-x-4">
+                                  <!-- Initials Avatar -->
+                                  <div class="initials-avatar bg-purple-500 text-white flex items-center justify-center rounded-full w-16 h-16 font-bold text-xl">
+                                      {getInitials(contact.name)}
+                                  </div>
+                                  <div>
+                                      <h2 class="text-2xl font-semibold text-purple-800">{contact.name}</h2>
+                                      <a href={`mailto:${contact.email}`} class="text-purple-600 hover:underline">{contact.email}</a>
+                                  </div>
+                              </div>
+                          </div>
+                      {/each}
+                  </div>
+              </div>
+          </div>
+
+          <p 
+              class="contact-info text-center text-lg sm:text-xl text-black-700"
+              in:fade={{ duration: 1000, delay: 800 }}
+          >
+              Feel free to reach out with ideas or questions. God bless!
+          </p>
+      {/if}
+  </div>
+</section>
 
 <style>
-  :global(html, body) {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
+  @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
   }
 
-  :global(body) {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff; /* White background */
-    color: #9915f7; /* Black text */
-    transition: background-color 0.5s ease, color 0.5s ease;
+  /* Smooth scrolling for anchor links */
+  html {
+      scroll-behavior: smooth;
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 40px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* Responsive Typography */
+  h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
   }
 
-  h1 {
-    font-size: 4em;
-    margin-bottom: 50px;
-    text-align: center;
-    animation: pulse 2s infinite;
-  }
-
+  /* Button Pulse Animation */
   @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
   }
 
-  .contacts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    width: 100%;
-    max-width: 800px;
+  button {
+      animation: pulse 2s infinite;
   }
 
+  button:hover {
+      animation: none;
+  }
+
+  /* Initials Avatar Styles */
+  .initials-avatar {
+      background-color: #9333ea; /* Purple-600 */
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+  }
+
+  /* Contact Card Styles */
   .contact-card {
-    padding: 30px;
-    border-radius: 20px;
-    background-color: #ffffff; /* White background */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    transform: translateZ(0);
+      background-color: #ffffff; /* White background */
+      border-radius: 2rem; /* Rounded corners */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .contact-card:hover {
-    transform: translateY(-10px) translateZ(0);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   }
 
   .contact-card h2 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    color: #9915f7; /* Black text */
+      color: #6b21a8; /* Purple-800 */
   }
 
   .contact-card a {
-    text-decoration: none;
-    color: #000000; /* Black text */
-    transition: color 0.3s ease;
+      color: #9333ea; /* Purple-600 */
+      transition: color 0.3s ease;
   }
 
   .contact-card a:hover {
-    text-decoration: underline;
+      color: #7e22ce; /* Darker Purple-600 */
+      text-decoration: underline;
   }
 
   .contact-info {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 1.2em;
-    max-width: 600px;
-    color: #000000; /* Black text */
+      font-family: 'Poppins', sans-serif;
   }
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 60px 20px;
-    }
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+      h1 {
+          font-size: 3rem;
+      }
 
-    h1 {
-      font-size: 3em;
-    }
+      h2 {
+          font-size: 2rem;
+      }
 
-    .contacts-grid {
-      grid-template-columns: 1fr;
-    }
+      h3 {
+          font-size: 1.25rem;
+      }
+
+      .contact-card {
+          padding: 1.5rem;
+      }
+
+      .contact-card h2 {
+          font-size: 1.5rem;
+      }
+
+      .contact-card a {
+          font-size: 1rem;
+      }
   }
 </style>
